@@ -17,7 +17,7 @@ gulp.task('grid', function () {
 });
 
 gulp.task('sass', function () {
-    return gulp.src('src/style/**/index.scss')
+    return gulp.src('src/style/**/*')
         .pipe(sass())
         .pipe(cssmin())
         .pipe(gulp.dest('dist/style/'));
@@ -31,7 +31,7 @@ gulp.task('scripts', function () {
         .pipe(uglify().on('error', function (e) {
             console.log(e);
         }))
-        .pipe(gulp.dest('./dist/'))
+        .pipe(gulp.dest('./dist/js/'))
 });
 
 gulp.task('sections', ['sass'], function () {
@@ -56,7 +56,7 @@ gulp.task('fonts', function () {
 gulp.task('watch', ['default'], function () {
     gulp.watch('src/js/**/*.js', ['scripts']);
     gulp.watch('src/**/*.ejs', ['sections']);
-    gulp.watch('src/style/**/*.scss', ['sass', 'sections']);
+    gulp.watch('src/style/**/*', ['sass', 'sections']);
     gulp.watch('src/images/**/*', ['assets']);
 });
 
