@@ -9,6 +9,12 @@ var ejs = require('gulp-ejs');
 // var babel = require('gulp-babel');
 var fs = require('fs');
 
+
+gulp.task('assets', function () {
+    return gulp.src('src/assets/*')
+        .pipe(gulp.dest('./dist/assets'));
+});
+
 gulp.task('grid', function () {
     return gulp.src('src/style/**/grid-system.scss')
         .pipe(sass())
@@ -24,7 +30,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('scripts', function () {
-    return gulp.src('src/js/**/*.js')
+    return gulp.src('src/js/**/*')
         // .pipe(babel({
         //     presets: ['es2015']
         // }))
@@ -43,7 +49,7 @@ gulp.task('sections', ['sass'], function () {
         .pipe(gulp.dest('./dist'))
 });
 
-gulp.task('assets', function () {
+gulp.task('images', function () {
     gulp.src(['./src/images/**/*'])
         .pipe(gulp.dest('./dist/images'))
 });
@@ -56,9 +62,10 @@ gulp.task('fonts', function () {
 gulp.task('watch', ['default'], function () {
     gulp.watch('src/js/**/*.js', ['scripts']);
     gulp.watch('src/**/*.ejs', ['sections']);
-    gulp.watch('src/style/**/*', ['sass', 'sections']);
+    gulp.watch('src/style/**/*.scss', ['sass', 'sections']);
     gulp.watch('src/images/**/*', ['assets']);
 });
 
 
-gulp.task('default', ['sass', 'assets', 'scripts', 'sections', 'fonts', 'grid']);
+
+gulp.task('default', ['sass', 'images', 'scripts', 'sections', 'fonts', 'grid', 'assets']);
