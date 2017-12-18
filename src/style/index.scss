@@ -665,7 +665,6 @@ $b-pad-top: ($b-height / 2 - $b-bun-width-half); //Vertically centers bun in men
 .header_nav_menu {
   &:after {
     background: color(primary);
-    content: '';
     height: 100%;
     left: 0;
     opacity: 0;
@@ -735,11 +734,6 @@ $b-pad-top: ($b-height / 2 - $b-bun-width-half); //Vertically centers bun in men
   transition: $b-transition;
   width: auto;
 
-  &:hover,
-  &--active {
-    border-left: color(complement) solid $b-border-width;
-    padding-left: $b-txt-pad;
-  }
 }
 
 .b-menu {
@@ -918,7 +912,8 @@ img {
   body {
     font-size: 70%;
   }
-  .header_nav_menu {display: block}
+  .header_nav_menu {display: block
+  }
   .header_main_menu {
     display: none;
   }
